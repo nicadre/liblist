@@ -6,7 +6,7 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:42:47 by niccheva          #+#    #+#             */
-/*   Updated: 2016/04/06 09:31:39 by niccheva         ###   ########.fr       */
+/*   Updated: 2016/04/06 09:51:25 by niccheva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ int					main(void)
 
 	list_for_each_prev(pos, &person_list->list)
 	{
-		tmp = list_entry(pos, struct s_person, list);
-
+		tmp = LIST_ENTRY(pos, struct s_person, list);
 		printf("%d\n", tmp->age);
 
 	}

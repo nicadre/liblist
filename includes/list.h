@@ -6,27 +6,31 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 16:01:53 by niccheva          #+#    #+#             */
-/*   Updated: 2016/04/06 09:32:39 by niccheva         ###   ########.fr       */
+/*   Updated: 2016/04/06 09:50:30 by niccheva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIST_H
 # define LIST_H
 
-# define offsetof(type, member) ((size_t)&((type *)0)->member)
+# define OFFSETOF(type, member) ((size_t)&((type *)0)->member)
 
-# define list_entry(ptr, type, member) ({						\
-			const t_list	*__mptr = (ptr);					\
-			(type *)((char *)__mptr - offsetof(type, member)); })
+# define LIST_CAST(t, m) ((t *)((char *)mptr - OFFSETOF(t, m)))
 
-# define list_first_entry(ptr, type, member)	\
-	list_entry((ptr)->next, type, member)
+# define LIST_PTR(ptr) const t_list *mptr = (ptr)
 
-# define list_last_entry(ptr, type, member)		\
-	list_entry((ptr)->prev, type, member)
+# define LIST_ENTRY(p, t, m) ({LIST_PTR(p); LIST_CAST(t, m);})
 
-# define list_first_entry_or_null(ptr, type, member)				\
-	(!list_empty(ptr) ? list_first_entry(ptr, type, member) : NULL)
+/*
+ * # define LIST_FIRST_ENTRY(ptr, type, member)	\
+ *	list_entry((ptr)->next, type, member)
+ *
+ * # define LIST_LAST_ENTRY(ptr, type, member)	\
+ *	list_entry((ptr)->prev, type, member)
+ *
+ * # define LIST_FIRST_ENTRY_OR_NULL(ptr, type, member)				\
+ *	(!list_empty(ptr) ? list_first_entry(ptr, type, member) : NULL)
+ */
 
 typedef struct s_list	t_list;
 
