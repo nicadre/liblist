@@ -6,7 +6,7 @@
 #    By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/01 18:43:51 by niccheva          #+#    #+#              #
-#    Updated: 2016/03/27 18:35:02 by niccheva         ###   ########.fr        #
+#    Updated: 2016/04/06 09:20:11 by niccheva         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -24,30 +24,17 @@ DINC	=	./includes/
 
 DFTINC	=	../libft/includes/
 
-SRC		=	_list_add.c							\
-			_list_cut_position.c				\
-			_list_del.c							\
-			_list_del_entry.c					\
-			_list_splice.c						\
-			init_list_head.c					\
+SRC		=	init_list.c							\
 			list_add.c							\
 			list_add_tail.c						\
-			list_cut_position.c					\
 			list_del.c							\
 			list_del_init.c						\
 			list_empty.c						\
 			list_is_last.c						\
 			list_is_singular.c					\
-			list_move.c							\
-			list_move_tail.c					\
-			list_replace.c						\
-			list_replace_init.c					\
-			list_rotate_left.c					\
-			list_splice.c						\
-			list_splice_init.c					\
-			list_splice_tail.c					\
-			list_splice_tail_init.c
-
+			private_list_add.c					\
+			private_list_del.c					\
+			private_list_del_entry.c
 
 OBJ		=	$(patsubst %.c, $(DOBJ)%.o, $(SRC))
 

@@ -6,13 +6,13 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 17:43:36 by niccheva          #+#    #+#             */
-/*   Updated: 2016/03/27 17:44:22 by niccheva         ###   ########.fr       */
+/*   Updated: 2016/04/06 09:18:01 by niccheva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list.h"
 
-BOOL		list_is_last(const t_list_head *list, const t_list_head *head)
+int		list_is_last(const t_list *list, const t_list *head)
 {
 	return (list->next == head);
 }

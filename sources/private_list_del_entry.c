@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_splice_tail.c                                 :+:      :+:    :+:   */
+/*   private_list_del_entry.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/27 18:27:36 by niccheva          #+#    #+#             */
-/*   Updated: 2016/03/27 18:28:45 by niccheva         ###   ########.fr       */
+/*   Created: 2016/03/27 17:24:37 by niccheva          #+#    #+#             */
+/*   Updated: 2016/04/06 09:19:43 by niccheva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list.h"
 
-void		list_splice_tail(const t_list_head *list, t_list_head *head)
+void		private_list_del_entry(t_list *entry)
 {
-	if (!list_empty(list))
-		_list_splice(list, head->prev, head);
+	private_list_del(entry->prev, entry->next);
 }

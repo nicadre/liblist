@@ -6,7 +6,7 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:42:47 by niccheva          #+#    #+#             */
-/*   Updated: 2016/03/28 10:47:53 by niccheva         ###   ########.fr       */
+/*   Updated: 2016/04/06 09:31:39 by niccheva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 struct				s_person
 {
 	unsigned int	age;
-	t_list_head		list;
+	t_list		list;
 };
 
 int					main(void)
@@ -32,7 +32,7 @@ int					main(void)
 	struct s_person	*person_list;
 
 	person_list = malloc(sizeof(*person_list));
-	init_list_head(&person_list->list);
+	init_list(&person_list->list);
 	srand(time(NULL));
 	i = 0;
 	while (i < 10)
@@ -41,24 +41,14 @@ int					main(void)
 
 		new = malloc(sizeof(*new));
 		new->age = rand() % 100;
-		init_list_head(&new->list);
+		init_list(&new->list);
 		list_add_tail(&(new->list), (&person_list->list));
 		++i;
 	}
 
-	t_list_head		*pos;
+	t_list		*pos;
 	struct s_person	*tmp;
 
-	list_for_each_prev(pos, &person_list->list)
-	{
-		tmp = list_entry(pos, struct s_person, list);
-
-		printf("%d\n", tmp->age);
-
-	}
-
-	printf("\n\n");
-	list_rotate_left(&person_list->list);
 	list_for_each_prev(pos, &person_list->list)
 	{
 		tmp = list_entry(pos, struct s_person, list);

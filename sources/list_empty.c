@@ -6,13 +6,13 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 17:46:53 by niccheva          #+#    #+#             */
-/*   Updated: 2016/03/27 17:47:24 by niccheva         ###   ########.fr       */
+/*   Updated: 2016/04/06 09:17:41 by niccheva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list.h"
 
-BOOL		list_empty(const t_list_head *head)
+int		list_empty(const t_list *head)
 {
 	return (head->next == head);
 }
