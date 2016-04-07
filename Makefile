@@ -6,55 +6,58 @@
 #    By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/01 18:43:51 by niccheva          #+#    #+#              #
-#    Updated: 2016/04/06 09:20:11 by niccheva         ###   ########.fr        #
+#    Updated: 2016/04/07 10:01:29 by niccheva         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
-NAME	=	liblist.a
+NAME		=	liblist.a
 
-CC		=	cc
+CC			=	cc
 
-FLAGS	=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror
 
-DSRC	=	./sources/
+DSOURCES	=	./sources/
 
-DOBJ	=	./objects/
+DOBJECTS	=	./objects/
 
-DINC	=	./includes/
+INCLUDES	=	-I./includes/
 
-DFTINC	=	../libft/includes/
+SOURCES		=	init_list.c							\
+				list_add.c							\
+				list_add_tail.c						\
+				list_del.c							\
+				list_del_init.c						\
+				list_empty.c						\
+				list_is_last.c						\
+				list_is_singular.c					\
+				private_list_add.c					\
+				private_list_del.c					\
+				private_list_del_entry.c
 
-SRC		=	init_list.c							\
-			list_add.c							\
-			list_add_tail.c						\
-			list_del.c							\
-			list_del_init.c						\
-			list_empty.c						\
-			list_is_last.c						\
-			list_is_singular.c					\
-			private_list_add.c					\
-			private_list_del.c					\
-			private_list_del_entry.c
+OBJECTS		=	$(patsubst %.c, $(DOBJECTS)%.o, $(SOURCES))
 
-OBJ		=	$(patsubst %.c, $(DOBJ)%.o, $(SRC))
+DEPS		=	$(patsubst %.c, $(DOBJECTS)%.d, $(SOURCES))
+
+DEPENDS		=	-MT $@ -MD -MP -MF $(subst .o,.d,$@)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJECTS)
 	@echo "\n\033[0;32m$(NAME) compiled:\t\033[0;m\c"
-	ar rcs $(NAME) $(OBJ)
+	ar rcs $(NAME) $(OBJECTS)
 
-$(DOBJ)%.o: $(DSRC)%.c
-	@mkdir -p $(DOBJ)
+-include $(OBJECTS:.o=.d)
+
+$(DOBJECTS)%.o: $(DSOURCES)%.c
+	@mkdir -p $(DOBJECTS)
 	@echo "\033[32m$< compiled:\t\033[0;m\c"
-	$(CC) -o $@ -c $< -I$(DINC) -I$(DFTINC)
+	$(CC) $(CFLAGS) $(DEPENDS) -o $@ -c $< $(INCLUDES)
 
 clean:
-	rm -f $(OBJ)
-	@rm -rf $(DOBJ)
+	@rm -rf $(DOBJECTS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 

@@ -6,7 +6,7 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 16:01:53 by niccheva          #+#    #+#             */
-/*   Updated: 2016/04/06 09:50:30 by niccheva         ###   ########.fr       */
+/*   Updated: 2016/04/07 10:02:51 by niccheva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,9 @@
 
 # define LIST_ENTRY(p, t, m) ({LIST_PTR(p); LIST_CAST(t, m);})
 
-/*
- * # define LIST_FIRST_ENTRY(ptr, type, member)	\
- *	list_entry((ptr)->next, type, member)
- *
- * # define LIST_LAST_ENTRY(ptr, type, member)	\
- *	list_entry((ptr)->prev, type, member)
- *
- * # define LIST_FIRST_ENTRY_OR_NULL(ptr, type, member)				\
- *	(!list_empty(ptr) ? list_first_entry(ptr, type, member) : NULL)
- */
+# define LIST_FIRST_ENTRY(p, t, m) LIST_ENTRY((p)->next, t, m)
+
+# define LIST_LAST_ENTRY(p, t, m) LIST_ENTRY((p)->prev, t, m)
 
 typedef struct s_list	t_list;
 
